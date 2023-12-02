@@ -16,7 +16,7 @@ shlList=(zsh fish)
 pkg_installed() {
     local PkgIn=$1
 
-    if pacman -Qi "${PkgIn}" &> /dev/null; then
+    if dnf info --installed $PkgIn &> /dev/null; then
         return 0
     else
         return 1
@@ -39,7 +39,7 @@ chk_list() {
 pkg_available() {
     local PkgIn=$1
 
-    if pacman -Si "${PkgIn}" &> /dev/null; then
+    if dnf info $PkgIn &> /dev/null; then
         return 0
     else
         return 1

@@ -11,17 +11,19 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-"${scrDir}/install_aur.sh" "${getAur}" 2>&1
-chk_list "aurhlpr" "${aurList[@]}"
-listPkg="${1:-"${scrDir}/custom_hypr.lst"}"
-archPkg=()
-aurhPkg=()
-ofs=$IFS
-IFS='|'
+if ! pkg_installed git
+    then
+    echo "installing dependency git..."
+    sudo dnf install git
+fi
 
-while read -r pkg deps; do
-    pkg="${pkg// /}"
-    if [ -z "${pkg}" ]; then
+echo "installing copr..."
+./install_copr.sh
+
+install_list="${1:-custom-hypr.lst}"
+
+while read pkg; do
+    if [ -z $pkg ]; then
         continue
     fi
 
@@ -38,32 +40,32 @@ while read -r pkg deps; do
             fi
         done < <(echo "${deps}" | xargs -n1)
 
-        if [[ ${pass} -ne 1 ]]; then
-            echo -e "\033[0;33m[skip]\033[0m ${pkg} is missing (${deps}) dependency..."
-            continue
-        fi
-    fi
+    elif pkg_available ${pkg}
+        then
+        echo "queueing ${pkg} from dnf..."
+        pkg_dnf=`echo $pkg_dnf ${pkg}`
 
-    if pkg_installed "${pkg}"; then
-        echo -e "\033[0;33m[skip]\033[0m ${pkg} is already installed..."
-    elif pkg_available "${pkg}"; then
-        repo=$(pacman -Si "${pkg}" | awk -F ': ' '/Repository / {print $2}')
-        echo -e "\033[0;32m[${repo}]\033[0m queueing ${pkg} from official arch repo..."
-        archPkg+=("${pkg}")
-    elif aur_available "${pkg}"; then
-        echo -e "\033[0;34m[aur]\033[0m queueing ${pkg} from arch user repo..."
-        aurhPkg+=("${pkg}")
     else
-        echo "Error: unknown package ${pkg}..."
+        echo "error: unknown package ${pkg}..."
     fi
-done < <(cut -d '#' -f 1 "${listPkg}")
 
-IFS=${ofs}
-
-if [[ ${#archPkg[@]} -gt 0 ]]; then
-    sudo pacman ${use_default} -S "${archPkg[@]}"
+if [ `echo $pkg_dnf | wc -w` -gt 0 ]
+    then
+    echo "installing $pkg_dnf from dnf..."
+    sudo dnf ${use_default} install $pkg_dnf
 fi
 
-if [[ ${#aurhPkg[@]} -gt 0 ]]; then
-    "${aurhlpr}" ${use_default} -S "${aurhPkg[@]}"
-fi
+# python-pyamdgpuinfo
+pip install pyamdgpuinfo
+
+# oh-my-zsh-git
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+
+# zsh-theme-powerlevel10k-git
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+# pokemon-colorscropts
+git clone https://gitlab.com/phoneybadger/pokemon-colorscripts.git
+cd pokemon-colorscripts
+sudo ./install.sh
+cd ..

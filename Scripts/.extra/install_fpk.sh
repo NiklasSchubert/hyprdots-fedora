@@ -13,8 +13,9 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-if ! pkg_installed flatpak; then
-    sudo pacman -S flatpak
+if ! pkg_installed flatpak
+    then
+    sudo dnf install flatpak
 fi
 
 flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
