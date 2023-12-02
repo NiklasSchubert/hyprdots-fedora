@@ -56,7 +56,7 @@ if [ `echo $pkg_dnf | wc -w` -gt 0 ]
 fi
 
 # python-pyamdgpuinfo
-if [ $(uname -m) != "aarch64" ]
+if amd_detect
     then
     pip install pyamdgpuinfo
 fi
