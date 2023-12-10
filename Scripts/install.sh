@@ -7,12 +7,17 @@
 cat << "EOF"
 
 -------------------------------------------------
-        .
-       / \         _       _  _      ___  ___ 
-      /^  \      _| |_    | || |_  _|   \| __|
-     /  _  \    |_   _|   | __ | || | |) | _| 
-    /  | | ~\     |_|     |_||_|\_, |___/|___|
-   /.-'   '-.\                  |__/          
+                ..........     
+              ........-+##+...  
+             .......-###+++--.. 
+            ........+#+....---..     _       _  _      ___  ___ 
+            ........+#+....---..   _| |_    | || |_  _|   \| __|
+            ...--+#######----...  |_   _|   | __ | || | |) | _| 
+            ..-----+###---......    |_|     |_||_|\_, |___/|___|
+            .---....+#+.........                  |__/          
+            .---...-##-........ 
+            ..--#####-........  
+             ....----.......   
 
 -------------------------------------------------
 
@@ -87,9 +92,7 @@ if [ ${flg_Install} -eq 1 ]; then
 
 EOF
 
-    #----------------------#
-    # prepare package list #
-    #----------------------#
+    # Prepare package list
     shift $((OPTIND - 1))
     cust_pkg=$1
     cp "${scrDir}/custom_hypr.lst" "${scrDir}/install_pkg.lst"
@@ -98,9 +101,7 @@ EOF
         cat "${cust_pkg}" >> "${scrDir}/install_pkg.lst"
     fi
 
-    #--------------------------------#
-    # add nvidia drivers to the list #
-    #--------------------------------#
+    # Add Nvidia drivers to the list
     if nvidia_detect; then
         cat /usr/lib/modules/*/pkgbase | while read krnl; do
             echo "${krnl}-headers" >> "${scrDir}/install_pkg.lst"
@@ -113,18 +114,6 @@ EOF
     #----------------#
     # get user prefs #
     #----------------#
-    if ! chk_list "aurhlpr" "${aurList[@]}"; then
-        echo -e "Available aur helpers:\n[1] yay\n[2] yay (bin)\n[3] paru\n[4] paru (bin)"
-        prompt_timer 120 "Enter option number [default: yay] "
-
-        case "${promptIn}" in
-            1) export getAur="yay" ;;
-            2) export getAur="yay-bin" ;;
-            3) export getAur="paru" ;;
-            4) export getAur="paru-bin" ;;
-            *) echo -e "...Invalid option selected..." ; exit 1 ;;
-        esac
-    fi
 
     if ! chk_list "myShell" "${shlList[@]}"; then
         echo -e "Select shell:\n[1] zsh\n[2] fish"
