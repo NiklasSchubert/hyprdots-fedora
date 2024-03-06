@@ -60,7 +60,8 @@ fi
 ZSH=/usr/share/oh-my-zsh sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # zsh-theme-powerlevel10k-git
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /usr/share/zsh-theme-powerlevel10k/
+sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /tmp/zsh-theme-powerlevel10k/
+sudo mv /tmp/zsh-theme-powerlevel10k /usr/share/zsh-theme-powerlevel10k/
 
 # pokemon-colorscropts
 git clone https://gitlab.com/phoneybadger/pokemon-colorscripts.git
