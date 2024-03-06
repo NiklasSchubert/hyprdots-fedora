@@ -42,8 +42,9 @@ while read pkg; do
 
     elif pkg_available ${pkg}
         then
-        echo "queueing ${pkg} from dnf..."
-        pkg_dnf=`echo $pkg_dnf ${pkg}`
+        repo=$(dnf info --available ${pkg} | awk -F ': ' '/Repository / {print $2}')
+        echo -e "\033[0;32m[${repo}]\033[0m queueing ${pkg} from official dnf repo..."
+        pkg_dnf=`echo ${pkg_dnf} ${pkg}`
 
     else
         echo "error: unknown package ${pkg}..."
@@ -53,12 +54,6 @@ if [ `echo $pkg_dnf | wc -w` -gt 0 ]
     then
     echo "installing $pkg_dnf from dnf..."
     sudo dnf install ${use_default} $pkg_dnf
-fi
-
-# python-pyamdgpuinfo
-if amd_detect
-    then
-    pip install pyamdgpuinfo
 fi
 
 # oh-my-zsh-git
