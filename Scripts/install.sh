@@ -92,7 +92,9 @@ if [ ${flg_Install} -eq 1 ]; then
 
 EOF
 
-    # Prepare package list
+    #----------------------#
+    # prepare package list #
+    #----------------------#
     shift $((OPTIND - 1))
     cust_pkg=$1
     cp "${scrDir}/custom_hypr.lst" "${scrDir}/install_pkg.lst"
