@@ -49,7 +49,7 @@ while getopts idrs RunStep; do
     s)  flg_Service=1 ;;
     *)  echo "...valid options are..."
         echo "i : [i]nstall hyprland without configs"
-        echo "d : install hyprland [d]efaults without configs --noconfirm"
+        echo "d : install hyprland [d]efaults without configs -y"
         echo "r : [r]estore config files"
         echo "s : enable system [s]ervices"
         exit 1 ;;
