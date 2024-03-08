@@ -50,7 +50,7 @@ For Nixos support there is a separate project being maintained @ [Hydenix](https
 To install, execute the following commands:
 
 ```shell
-sudo dnf install -y git wget tar parallel base-devel
+sudo dnf install -y git wget tar pciutils parallel base-devel
 
 git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/HyDE
 cd ~/HyDE/Scripts
