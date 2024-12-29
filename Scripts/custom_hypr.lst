@@ -17,9 +17,9 @@ udiskie                                                # manage removable media
 
 # --------------------------------------------------- // Display Manager
 sddm                                                   # display manager for KDE plasma
-qt5-quickcontrols                                      # for sddm theme ui elements
-qt5-quickcontrols2                                     # for sddm theme ui elements
-qt5-graphicaleffects                                   # for sddm theme effects
+qt5-qtquickcontrols                                    # for sddm theme ui elements
+qt5-qtquickcontrols2                                     # for sddm theme ui elements
+qt5-qtgraphicaleffects                                 # for sddm theme effects
 
 # --------------------------------------------------- // Window Manager
 hyprland                                               # wlroots-based wayland compositor
@@ -38,7 +38,6 @@ cliphist                                               # clipboard manager
 # --------------------------------------------------- // Dependencies
 polkit-gnome                                           # authentication agent
 xdg-desktop-portal-hyprland                            # xdg desktop portal for hyprland
-pacman-contrib                                         # for system update check
 python-pyamdgpuinfo                                    # for amd gpu info
 parallel                                               # for parallel processing
 jq                                                     # for json processing
