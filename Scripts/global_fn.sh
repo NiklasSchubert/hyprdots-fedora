@@ -57,6 +57,7 @@ aur_available() {
 }
 
 nvidia_detect() {
+    return -1
     readarray -t dGPU < <(lspci -k | grep -E "(VGA|3D)" | awk -F ': ' '{print $NF}')
     if [ "${1}" == "--verbose" ]; then
         for indx in "${!dGPU[@]}"; do
