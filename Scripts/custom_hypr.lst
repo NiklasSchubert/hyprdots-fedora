@@ -7,18 +7,18 @@ pipewire-gstreamer                                     # pipewire gstreamer clie
 wireplumber                                            # pipewire session manager
 pavucontrol                                            # pulseaudio volume control
 pamixer                                                # pulseaudio cli mixer
-networkmanager                                         # network manager
+NetworkManager                                         # network manager
 network-manager-applet                                 # network manager system tray utility
 bluez                                                  # bluetooth protocol stack
-bluez-utils                                            # bluetooth utility cli
+bluez-libs                                             # bluetooth utility cli
 blueman                                                # bluetooth manager gui
 brightnessctl                                          # screen brightness control
 udiskie                                                # manage removable media
 
 # --------------------------------------------------- // Display Manager
-sddm                                                   # display manager for KDE plasma
+# sddm                                                 # display manager for KDE plasma
 qt5-qtquickcontrols                                    # for sddm theme ui elements
-qt5-qtquickcontrols2                                     # for sddm theme ui elements
+qt5-qtquickcontrols2                                   # for sddm theme ui elements
 qt5-qtgraphicaleffects                                 # for sddm theme effects
 
 # --------------------------------------------------- // Window Manager
@@ -27,9 +27,9 @@ dunst                                                  # notification daemon
 rofi-wayland                                           # application launcher
 waybar                                                 # system bar
 swww                                                   # wallpaper
-swaylock-effects-git                                   # lock screen
+swaylock-effects                                       # lock screen
 wlogout                                                # logout menu
-grimblast-git                                          # screenshot tool
+# grimblast-git                                        # screenshot tool
 hyprpicker                                             # color picker
 slurp                                                  # region select for screenshot/screenshare
 swappy                                                 # screenshot editor
@@ -38,11 +38,11 @@ cliphist                                               # clipboard manager
 # --------------------------------------------------- // Dependencies
 polkit-gnome                                           # authentication agent
 xdg-desktop-portal-hyprland                            # xdg desktop portal for hyprland
-python-pyamdgpuinfo                                    # for amd gpu info
+#python-pyamdgpuinfo                                   # for amd gpu info
 parallel                                               # for parallel processing
 jq                                                     # for json processing
-imagemagick                                            # for image processing
-qt5-imageformats                                       # for dolphin image thumbnails
+ImageMagick                                            # for image processing
+qt5-qtimageformats                                     # for dolphin image thumbnails
 ffmpegthumbs                                           # for dolphin video thumbnails
 kde-cli-tools                                          # for dolphin file type defaults
 libnotify                                              # for notifications
@@ -60,17 +60,17 @@ firefox                                                # browser
 kitty                                                  # terminal
 dolphin                                                # kde file manager
 ark                                                    # kde file archiver
-vim                                                    # terminal text editor
+vim-minimal                                            # terminal text editor
 code                                                   # ide text editor
 
 # --------------------------------------------------- // Shell
-eza|zsh                                                # file lister for zsh
-oh-my-zsh-git|zsh                                      # plugin manager for zsh
-zsh-theme-powerlevel10k-git|zsh oh-my-zsh-git          # theme for zsh
-eza|fish                                               # file lister for fish
-starship|fish                                          # customizable shell prompt
+#eza|zsh                                               # file lister for zsh
+#oh-my-zsh-git|zsh                                     # plugin manager for zsh
+#zsh-theme-powerlevel10k-git|zsh oh-my-zsh-git         # theme for zsh
+#eza|fish                                              # file lister for fish
+#starship|fish                                         # customizable shell prompt
 fastfetch                                              # system information fetch tool
-pokemon-colorscripts-git|zsh                           # display pokemon sprites
+#pokemon-colorscripts-git|zsh                          # display pokemon sprites
 
 # --------------------------------------------------- // HyDE
-hyde-cli-git                                           # cli tool to manage hyde
+#hyde-cli-git                                           # cli tool to manage hyde
